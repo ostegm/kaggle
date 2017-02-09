@@ -1,4 +1,7 @@
 import yaml, datetime
+import numpy as np
+import pandas as pd 
+
 creds = yaml.load(open('/home/ubuntu/credentials.yaml'))
 kg_uname = creds['kaggle_user']
 kg_pass = creds['kaggle_pass']
@@ -18,7 +21,7 @@ def do_clip(arr, mx):
     return np.clip(arr, (1-mx)/9, mx)
 
 
-def gen_submission_file(fname, comp, info):
+def gen_submission_cmd(fname, comp, info):
     comp = 'the-nature-conservancy-fisheries-monitoring'
     cmd = "kg submit {} -c {} -u {} -p {} -m '{}'".format(fname, comp, kg_uname, kg_pass, info)
     return cmd
